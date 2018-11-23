@@ -6,4 +6,5 @@
 /pkg/
 /spec/reports/
 /tmp/
-/.idea
+.idea
+.DS_Store
