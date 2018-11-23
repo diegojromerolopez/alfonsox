@@ -1,5 +1,7 @@
 # Alfonso X
 
+**NOT READY FOR USE IN PRODUCTION**.
+
 ## What's this?
 
 A simple spellchecking tool to make easy the spellchecking of code files.
@@ -24,7 +26,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Load dictionary
+
+```ruby
+# Load dictionary
+dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
+'en_US', "#{__dir__}/dictionaries/en_US"
+)
+
+# Create spellchecker
+spellchecker = AlfonsoX::SpellChecker::Main.new(
+  "directory/with/files/**/*.rb",
+  dictionary
+)
+
+# Check the files
+incorrect_words = spellchecker.check
+
+# incorrect_words is a dict where
+# the keys area the path of each one of the files that have at least one wrong word
+# and the values are a list of incorrect words 
+```
+
 
 ## Development
 
