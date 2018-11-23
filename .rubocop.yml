@@ -1,0 +1,11 @@
+AllCops:
+  TargetRubyVersion: 2.5
+
+Metrics/LineLength:
+  Max: 120
+
+Style/RedundantSelf:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+    Enabled: false
