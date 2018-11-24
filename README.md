@@ -74,9 +74,12 @@ to install dictionaries in Windows.
 # Make sure you have installed your dictionaries 
 dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new('en_US')
 
-# Load Hunspell dictionary from a local path
+# Or, alternatively you can load Hunspell dictionary from a local path
+# Make sure the following files exist:
+# - YOUR_PATH/dictionaries/en_US.aff 
+# - YOUR_PATH/dictionaries/en_US.dic 
 dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
-'en_US', "YOUR PATH/dictionaries/en_US"
+  'en_US', "YOUR_PATH/dictionaries/en_US"
 )
 ```
 
