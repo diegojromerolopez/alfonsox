@@ -6,6 +6,7 @@ require 'nokogiri'
 module AlfonsoX
   module SpellChecker
     module Dictionary
+      # Rubymine dictionary loader
       class Rubymine
         def initialize(path = nil)
           @path = path || '.idea/dictionaries'

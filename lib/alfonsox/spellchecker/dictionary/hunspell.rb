@@ -6,6 +6,7 @@ require 'Hunspell'
 module AlfonsoX
   module SpellChecker
     module Dictionary
+      # Hunspell dictionary loader
       class Hunspell
         def initialize(language, path = nil)
           @language = language
@@ -43,11 +44,8 @@ module AlfonsoX
             break if hunspell_output_lines[i].start_with?('AVAILABLE DICTIONARIES')
             i += 1
           end
-
           i += 1
-
           dict_file_paths = Set.new(hunspell_output_lines[i..(hunspell_output_lines.length - 1)])
-
           dict_file_paths.map { |path| path.split('/')[0..-2].join('/') }
         end
 

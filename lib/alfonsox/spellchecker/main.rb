@@ -5,6 +5,7 @@ require 'alfonsox/spellchecker/file'
 # Alfonso X module
 module AlfonsoX
   module SpellChecker
+    # Main spellchecker class
     class Main
       def initialize(paths, dictionary)
         paths = [paths] if paths.is_a?(String)

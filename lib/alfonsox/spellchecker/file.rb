@@ -17,9 +17,7 @@ module AlfonsoX
       def spellcheck
         lines = ::File.open(@file_path).readlines
         lines.each_with_index do |line, line_index|
-          line_words = line.split(
-            /[_\-\s]+|(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/
-          )
+          line_words = self.class.word_splitter(line)
           line_words.each do |word|
             spell_checked_word = AlfonsoX::SpellChecker::Word.new(word, line_index + 1, @dictionary)
             word_is_right = spell_checked_word.check
@@ -32,6 +30,13 @@ module AlfonsoX
 
       def incorrect_words?
         @incorrect_words.length.positive?
+      end
+
+      # Split words of a line.
+      # @param [String] word_line A line of a text.
+      # @return [Array<String>] Words of the word_line.
+      def self.word_splitter(word_line)
+        word_line.split(/[_\-\s]+|(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/)
       end
     end
   end

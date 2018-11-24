@@ -1,12 +1,11 @@
 # Alfonso X
 
-**NOT READY FOR USE IN PRODUCTION**.
-
 ## What's this?
 
 A simple spellchecking tool to make easy the spellchecking of code files.
 
-The aim is to use it with overcommit and automatically spellcheck code files.
+The aim is to use it with [overcommit](https://github.com/brigade/overcommit)
+and automatically spellcheck code files with a pre-commit git hook.
 
 ## Installation
 
@@ -24,12 +23,54 @@ Or install it yourself as:
 
     $ gem install alfonsox
 
+## Setup
+
+Make sure you have [hunspell](http://hunspell.github.io/) installed
+in your system.
+
+### Check your dictionaries
+
+Use
+
+```bash
+hunspell -D
+```
+
+to see your search paths and available dictionaries.
+
+### Install additional dictionaries
+
+#### GNU/Linux
+
+Install myspell dictionaries and avoid trouble:
+
+```bash
+# e.g.: install Spanish dictionary.
+sudo apt install myspell-es 
+```
+
+```bash
+# e.g.: install US English dictionary.
+sudo apt install myspell-en-us
+```
+
+#### MacOS
+
+Download some Hunspell dictionaries
+(e.g. [LibreOffice dictionaries](https://github.com/LibreOffice/dictionaries))
+and copy them in the following location: **/Users/<your user>/Library/Spellings**.
+
+#### Windows
+
+[Follow this tutorial](https://lists.gnu.org/archive/html/help-gnu-emacs/2014-04/msg00030.html)
+to install dictionaries in Windows.
+
 ## Usage
 
 ### Load dictionary
 
 ```ruby
-# Load dictionary
+# Load Hunspell dictionary
 dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
 'en_US', "#{__dir__}/dictionaries/en_US"
 )
@@ -57,13 +98,17 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/alfonsox. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at [https://github.com/diegojromerolopez/alfonsox]([https://github.com/diegojromerolopez/alfonsox).
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+To sum up, we only talk about this software and respect each other.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-The en_US dictionary included in the tests has MIT and BSD license and has been copied from [Titus wormer's dictionary repository](https://github.com/wooorm/dictionaries/tree/master/dictionaries/en-US).
+The en_US dictionary included in the tests has MIT and BSD license and has been copied from [Titus Wormer's dictionary repository](https://github.com/wooorm/dictionaries/tree/master/dictionaries/en-US).
 
 ## Code of Conduct
 
