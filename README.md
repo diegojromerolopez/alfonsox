@@ -67,12 +67,22 @@ to install dictionaries in Windows.
 
 ## Usage
 
-```ruby
-# Load Hunspell dictionary
-dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
-'en_US', "#{__dir__}/dictionaries/en_US"
-)
+### Load dictionaries
 
+```ruby
+# Load Hunspell dictionary from your system
+# Make sure you have installed your dictionaries 
+dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new('en_US')
+
+# Load Hunspell dictionary from a local path
+dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
+'en_US', "YOUR PATH/dictionaries/en_US"
+)
+```
+
+### Spellcheck some files
+
+```ruby
 # Create spellchecker
 spellchecker = AlfonsoX::SpellChecker::Main.new(
   "directory/with/files/**/*.rb",
