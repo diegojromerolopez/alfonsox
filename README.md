@@ -72,4 +72,4 @@ Everyone interacting in the Alfonso X project’s codebases, issue trackers, cha
 ## Why the name?
 
 [Alfonso X](https://en.wikipedia.org/wiki/Alfonso_X_of_Castile), called *The Wise*, was a king that reigned [Castile](https://en.wikipedia.org/wiki/Crown_of_Castile) (in Spain) during medieval times.
-He was a patron of the languages and pushed for the first ortography rules of Spanish.
+He was a patron of the languages and pushed for the first orthography rules of Spanish.
