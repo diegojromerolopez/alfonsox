@@ -67,8 +67,6 @@ to install dictionaries in Windows.
 
 ## Usage
 
-### Load dictionary
-
 ```ruby
 # Load Hunspell dictionary
 dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
