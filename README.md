@@ -109,7 +109,7 @@ incorrect_words = spellchecker.check
 
 ## Configuration
 
-Create a YML file with the following structure:
+Create a YML file with the following structure to set up configuration of the spellchecking process:
 
 ```yaml
 Paths:
