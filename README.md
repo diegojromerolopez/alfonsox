@@ -1,5 +1,8 @@
 # Alfonso X
 
+[![Build Status](https://travis-ci.com/diegojromerolopez/alfonsox.svg?branch=master)](https://travis-ci.com/diegojromerolopez/alfonsox)
+
+
 ## What's this?
 
 A simple spellchecking tool to make easy the spellchecking of code files.
