@@ -1,11 +1,10 @@
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y hunspell
 env:
   global:
   - CC_TEST_REPORTER_ID=97a0d7ef341f593b1e8a6ad8ab8ceff2928ce1bd3edf3aa36e1df00e17b0952e
   - COVERAGE=true
 before_script:
+- sudo apt-get update
+- sudo apt-get install -y hunspell
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
