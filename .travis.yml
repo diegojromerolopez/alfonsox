@@ -1,3 +1,6 @@
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y hunspell
 env:
   global:
   - CC_TEST_REPORTER_ID=97a0d7ef341f593b1e8a6ad8ab8ceff2928ce1bd3edf3aa36e1df00e17b0952e
