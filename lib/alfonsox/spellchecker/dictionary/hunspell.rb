@@ -8,11 +8,16 @@ module AlfonsoX
     module Dictionary
       # Hunspell dictionary loader
       class Hunspell
+        attr_reader :language, :path
         def initialize(language, path = nil)
           @language = language
           @path = path
           find_dictionary_path unless @path
           initialize_spellchecker
+        end
+
+        def self.from_config(yml_config)
+          new(yml_config['language'], yml_config['path'])
         end
 
         def word_present?(word)

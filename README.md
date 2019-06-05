@@ -86,10 +86,14 @@ dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
 ### Spellcheck some files
 
 ```ruby
+dictionaries = [
+  AlfonsoX::SpellChecker::Dictionary::Hunspell.new('en_US'),
+  AlfonsoX::SpellChecker::Dictionary::Hunspell.new('es_US')
+]
 # Create spellchecker
 spellchecker = AlfonsoX::SpellChecker::Main.new(
   "directory/with/files/**/*.rb",
-  dictionary
+  dictionaries
 )
 
 # Check the files
@@ -100,7 +104,23 @@ incorrect_words = spellchecker.check
 # and the values are a list of incorrect words 
 ```
 
+## Configuration
 
+Create a YML file with the following structure:
+
+```yaml
+Paths:
+  - 'lib/**.rb'
+  - 'test/**.rb'
+Dictionaries:
+  MyEnglishDictionary:
+    type: 'hunspell'
+    path: 'test/dictionaries/en_US'
+    language: 'en_US'
+  MyRubymineDictionary:
+    type: 'rubymine'
+    path: '.idea/dictionary.xml'
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

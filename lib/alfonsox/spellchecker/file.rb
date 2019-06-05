@@ -8,12 +8,18 @@ module AlfonsoX
     # Each one of the source code files we want to spell-check
     class File
       attr_reader :incorrect_words
-      def initialize(file_path, dictionary)
+
+      # Initialize spellcheck on a file with some dictionaries
+      # @param [String] file_path File path of the file to be spellchecked.
+      # @param [Array<AlfonsoX::SpellChecker::Dictionary::Hunspell, AlfonsoX::SpellChecker::Dictionary::Rubymine>]
+      #        dictionaries Array of dictionaries, as constructed by AlfonsoX package.
+      def initialize(file_path, dictionaries)
         @file_path = file_path
-        @dictionary = dictionary
+        @dictionaries = dictionaries
         @incorrect_words = []
       end
 
+      # Perform the spellcheck on the file
       def spellcheck
         lines = ::File.open(@file_path).readlines
         lines.each_with_index do |line, line_index|
@@ -22,6 +28,7 @@ module AlfonsoX
         @incorrect_words
       end
 
+      # Are there any incorrect words?
       def incorrect_words?
         @incorrect_words.length.positive?
       end
@@ -30,7 +37,7 @@ module AlfonsoX
       # @param [String] word_line A line of a text.
       # @return [Array<String>] Words of the word_line.
       def self.word_splitter(word_line)
-        word_line.split(/[_\-\s]+|(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/)
+        word_line.split(/[_\-\s]+|(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|,|\./)
       end
 
       private
@@ -38,12 +45,19 @@ module AlfonsoX
       def check_line(line, line_number)
         line_words = self.class.word_splitter(line)
         line_words.each do |word|
-          spell_checked_word = AlfonsoX::SpellChecker::Word.new(word, line_number, @dictionary)
-          word_is_right = spell_checked_word.check
-          next if word_is_right
+          word_is_right, spell_checked_word = check_word(word, line_number)
+          next if word_is_right.is_a?(TrueClass)
           @incorrect_words << spell_checked_word
         end
       end
+
+      def check_word(word, line_number)
+        spell_checked_word = AlfonsoX::SpellChecker::Word.new(word, line_number, @dictionaries)
+        word_is_right = spell_checked_word.check
+        return [true, nil] if word_is_right
+        [false, spell_checked_word]
+      end
+
     end
   end
 end

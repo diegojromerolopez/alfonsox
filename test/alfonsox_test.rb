@@ -66,4 +66,39 @@ class AlfonsoXTest < Minitest::Test
     assert_equal 1, incorrect_words.length
     assert_equal 69, incorrect_words[SAMPLE_TEXT_PATH].length
   end
+
+  # Test that several dictionaries can be loaded
+  def test_several_dictionaries
+    hunspell_dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
+      'en_US', "#{__dir__}/dictionaries"
+    )
+    rubymine_dictionary = AlfonsoX::SpellChecker::Dictionary::Rubymine.new("#{__dir__}/dictionaries")
+    spellchecker = AlfonsoX::SpellChecker::Main.new(
+      SAMPLE_TEXT_PATH,
+      [hunspell_dictionary, rubymine_dictionary]
+    )
+    incorrect_words = spellchecker.check
+    assert_equal 1, incorrect_words.length
+    assert_equal 1, incorrect_words[SAMPLE_TEXT_PATH].length
+    assert_equal 'neighbourhood', incorrect_words[SAMPLE_TEXT_PATH][0].word
+    assert_equal 5, incorrect_words[SAMPLE_TEXT_PATH][0].line
+  end
+
+  def test_config_load
+    spellchecker = AlfonsoX::SpellChecker::Main.from_config("#{__dir__}/resources/config.yml")
+    # Check the spellchecked paths
+    assert_equal 2, spellchecker.paths.length
+    assert_equal 'lib/**.rb', spellchecker.paths[0]
+    assert_equal 'test/**.rb', spellchecker.paths[1]
+
+    # Dictionaries assertions
+    assert_equal 2, spellchecker.dictionaries.length
+
+    hunspell_dictionary = spellchecker.dictionaries[0]
+    assert_equal 'en_US', hunspell_dictionary.language
+    assert_equal 'test/dictionaries', hunspell_dictionary.path
+
+    rubymine_dictionary = spellchecker.dictionaries[1]
+    assert_equal '.idea/dictionary.xml', rubymine_dictionary.path
+  end
 end

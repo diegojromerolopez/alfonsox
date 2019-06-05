@@ -1,0 +1,11 @@
+Paths:
+  - 'lib/**.rb'
+  - 'test/**.rb'
+Dictionaries:
+  MyEnglishDictionary:
+    type: 'hunspell'
+    path: 'test/dictionaries'
+    language: 'en_US'
+  MyRubymineDictionary:
+    type: 'rubymine'
+    path: '.idea/dictionary.xml'

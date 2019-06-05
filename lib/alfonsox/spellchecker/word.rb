@@ -5,29 +5,29 @@ module AlfonsoX
   module SpellChecker
     # Each of the spell-checked words
     class Word
-      attr_reader :word
+      attr_reader :word, :line
 
-      def initialize(word, line, dictionary)
+      def initialize(word, line, dictionaries)
         @word = word
         @line = line
-        @dictionary = dictionary
+        @dictionaries = dictionaries
         @right = nil
-        @suggestions = nil
       end
 
       def check
-        right = @dictionary.word_present?(@word)
-        if right
-          @right = true
-        else
-          @right = false
-          @suggestions = @dictionary.similar_words(@word)
+        @dictionaries.each do |dictionary|
+          @right = check_for_dictionary(dictionary)
+          return true if @right
         end
-        @right
+        false
       end
 
-      def right?
-        @right
+      private
+
+      def check_for_dictionary(dictionary)
+        right = dictionary.word_present?(@word)
+        return true if right
+        false
       end
     end
   end
