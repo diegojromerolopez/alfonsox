@@ -25,6 +25,9 @@ module AlfonsoX
 
         private
 
+        # Try to find the dictionary path of the selected language
+        # @raise [Exception] Raise an exception if no dictionary is found for the selected language.
+        # @return [String] dictionary path for language.
         def find_dictionary_path
           dictionary_paths.each do |path|
             if dictionary_exists?(path)
@@ -32,10 +35,10 @@ module AlfonsoX
               return @path
             end
           end
-
           raise "'#{@language}' language Hunspell dictionary not found installed in your system"
         end
 
+        # Return an array of the hunspell dictionary paths
         def dictionary_paths
           output = `hunspell -D 2>&1`
           hunspell_output_lines = output.split("\n")
@@ -49,6 +52,7 @@ module AlfonsoX
           dict_file_paths.map { |path| path.split('/')[0..-2].join('/') }
         end
 
+        # Check if a hunspell dictionary exists for the selected language
         def dictionary_exists?(path)
           aff_file_exists = ::File.exist?("#{path}/#{@language}.aff")
           dic_file_exists = ::File.exist?("#{path}/#{@language}.dic")

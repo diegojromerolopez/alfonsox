@@ -123,7 +123,7 @@ The en_US dictionary included in the tests has MIT and BSD license and has been 
 
 ## Code of Conduct
 
-Everyone interacting in the Alfonso X project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/alfonsox/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Alfonso X project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/diegojromerolopez/alfonsox/blob/master/CODE_OF_CONDUCT.md).
 
 ## Why the name?
 
