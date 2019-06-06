@@ -56,7 +56,7 @@ class AlfonsoXTest < Minitest::Test
   # a short fragment of the sample text.
   # Note there is no language here, because the dictionary is not based on language
   # but in the words added by the user.
-  def _test_rubymine_dictionary_gb
+  def test_rubymine_dictionary_gb
     dictionary = AlfonsoX::SpellChecker::Dictionary::Rubymine.new("#{__dir__}/dictionaries")
     spellchecker = AlfonsoX::SpellChecker::Main.new(
       SAMPLE_TEXT_PATH,
