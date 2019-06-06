@@ -4,7 +4,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/053783a6bcd2404df5b1/maintainability)](https://codeclimate.com/github/diegojromerolopez/alfonsox/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/053783a6bcd2404df5b1/test_coverage)](https://codeclimate.com/github/diegojromerolopez/alfonsox/test_coverage)
 
-![King Alfonso X, the Wise](https://github.com/diegojromerolopez/alfonsox/raw/master/resources/images/alfonsox.jpg)
+<p align="center">
+  <img width="250" src="https://github.com/diegojromerolopez/alfonsox/raw/master/resources/images/alfonsox.jpg">
+</p>
 
 ## What's this?
 
