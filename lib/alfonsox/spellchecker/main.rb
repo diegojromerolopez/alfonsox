@@ -24,12 +24,14 @@ module AlfonsoX
       end
 
       # Load from config
+      # @param [String] config_file_path Config file path that will be loaded.
+      # @return [AlfonsoX::SpellChecker::Dictionary::Hunspell, AlfonsoX::SpellChecker::Dictionary::Rubymine]
+      #         Dictionary ready to be used by #AlfonsoX::SpellChecker::Main class.
       def self.from_config(config_file_path)
         config_file = YAML.load_file(config_file_path)
         dictionary_class_from_type = lambda do |config_dictionary_type|
           return AlfonsoX::SpellChecker::Dictionary::Hunspell if config_dictionary_type == 'hunspell'
           return AlfonsoX::SpellChecker::Dictionary::Rubymine if config_dictionary_type == 'rubymine'
-          p config_dictionary_type
           raise "Dictionary type #{config_dictionary_type} is not recognized"
         end
 

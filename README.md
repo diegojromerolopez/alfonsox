@@ -33,42 +33,9 @@ Or install it yourself as:
 Make sure you have [hunspell](http://hunspell.github.io/) installed
 in your system.
 
-### Check your dictionaries
-
-Use
-
-```bash
-hunspell -D
-```
-
-to see your search paths and available dictionaries.
-
-### Install additional dictionaries
-
-#### GNU/Linux
-
-Install myspell dictionaries and avoid trouble:
-
-```bash
-# e.g.: install Spanish dictionary.
-sudo apt install myspell-es 
-```
-
-```bash
-# e.g.: install US English dictionary.
-sudo apt install myspell-en-us
-```
-
-#### MacOS
-
-Download some Hunspell dictionaries
-(e.g. [LibreOffice dictionaries](https://github.com/LibreOffice/dictionaries))
-and copy them in the following location: **/Users/<your user>/Library/Spellings**.
-
-#### Windows
-
-[Follow this tutorial](https://lists.gnu.org/archive/html/help-gnu-emacs/2014-04/msg00030.html)
-to install dictionaries in Windows.
+No installation of dictionaries is required as this package alredy contains
+LibreOffice dictionaries from
+[LibreOffice dictionaries repository](https://github.com/LibreOffice/dictionaries).
 
 ## Usage
 
@@ -81,10 +48,10 @@ dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new('en_US')
 
 # Or, alternatively you can load Hunspell dictionary from a local path
 # Make sure the following files exist:
-# - YOUR_PATH/dictionaries/en_US.aff 
-# - YOUR_PATH/dictionaries/en_US.dic 
+# - YOUR_PATH/dictionaries/en_US/en_US.aff 
+# - YOUR_PATH/dictionaries/en_US/en_US.dic 
 dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
-  'en_US', "YOUR_PATH/dictionaries/en_US"
+  'en_US', "YOUR_PATH/dictionaries"
 )
 ```
 
@@ -118,10 +85,13 @@ Paths:
   - 'lib/**.rb'
   - 'test/**.rb'
 Dictionaries:
-  MyEnglishDictionary:
+  MyEnglishDictionaryFromLocalPath:
     type: 'hunspell'
-    path: 'test/dictionaries/en_US'
+    path: 'my-local-path/dictionaries'
     language: 'en_US'
+  MyEnglishDictionaryFromGem:
+      type: 'hunspell'
+      language: 'en_US'
   MyRubymineDictionary:
     type: 'rubymine'
     path: '.idea/dictionary.xml'

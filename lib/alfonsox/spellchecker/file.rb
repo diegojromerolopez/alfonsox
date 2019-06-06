@@ -33,11 +33,11 @@ module AlfonsoX
         @incorrect_words.length.positive?
       end
 
-      # Split words of a line.
+      # Tokenize a line, i.e. split words of a line.
       # @param [String] word_line A line of a text.
       # @return [Array<String>] Words of the word_line.
       def self.word_splitter(word_line)
-        word_line.split(/[_\-\s]+|(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|,|\./)
+        word_line.split(/[_\-\s]+|(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|\W+/).map(&:downcase)
       end
 
       private

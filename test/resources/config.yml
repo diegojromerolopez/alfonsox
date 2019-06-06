@@ -2,9 +2,12 @@ Paths:
   - 'lib/**.rb'
   - 'test/**.rb'
 Dictionaries:
-  MyEnglishDictionary:
+  MyEnglishDictionaryFromLocalPath:
     type: 'hunspell'
     path: 'test/dictionaries'
+    language: 'en_US'
+  MyEnglishDictionaryFromGem:
+    type: 'hunspell'
     language: 'en_US'
   MyRubymineDictionary:
     type: 'rubymine'

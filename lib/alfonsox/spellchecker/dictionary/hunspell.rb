@@ -8,16 +8,21 @@ module AlfonsoX
     module Dictionary
       # Hunspell dictionary loader
       class Hunspell
+        # Default hunspell dictionary path
+        DEFAULT_PATH = "#{ALFONSOX_DICTIONARIES_PATH}/hunspell"
+        # All atributtes are readable
         attr_reader :language, :path
+
+        # Construct a hunspell dictionary object for this package
         def initialize(language, path = nil)
           @language = language
-          @path = path
-          find_dictionary_path unless @path
-          initialize_spellchecker
+          @path = path || DEFAULT_PATH
+          initialize_spellchecker(path)
         end
 
+        # Load a hunspell dictionary from configuration
         def self.from_config(yml_config)
-          new(yml_config['language'], yml_config['path'])
+          new(yml_config['language'], yml_config.fetch('path') { DEFAULT_PATH })
         end
 
         def word_present?(word)
@@ -28,56 +33,53 @@ module AlfonsoX
           @spellchecker.suggest(word)
         end
 
-        private
+        def initialize_spellchecker(path)
+          dictionary_finder = DictionaryFinder.new(@language, path)
+          raise "'#{@language}' language Hunspell dictionary not found" unless dictionary_finder.find
+          @spellchecker = ::Hunspell.new(dictionary_finder.aff_file_path, dictionary_finder.dic_file_path)
+        end
+      end
 
-        # Try to find the dictionary path of the selected language
-        # @raise [Exception] Raise an exception if no dictionary is found for the selected language.
-        # @return [String] dictionary path for language.
-        def find_dictionary_path
-          dictionary_paths.each do |path|
-            if dictionary_exists?(path)
-              @path = path
-              return @path
+      # Finds the dictionary in this Gem
+      class DictionaryFinder
+        attr_reader :aff_file_path, :dic_file_path
+        PATH = "#{ALFONSOX_DICTIONARIES_PATH}/hunspell"
+
+        def initialize(language, path = nil)
+          @language = language
+          @path = path
+          @aff_file_path = nil
+          @dic_file_path = nil
+        end
+
+        def find
+          paths = [@path, "#{ALFONSOX_DICTIONARIES_PATH}/hunspell"].compact
+          paths.each do |path|
+            @aff_file_path, @dic_file_path = DictionaryFinder.find_from_language(@language, path)
+            return true if @aff_file_path && @dic_file_path
+          end
+          false
+        end
+
+        # Find language dictionary in a path
+        # @return [Array<String, nil>] an array with two elements.
+        #         If they are both strings, it will be the paths of aff and dic files.
+        #         Otherwise, if they are both nils, no dictionary could be found for the language.
+        def self.find_from_language(language, path)
+          standard_language = language.split('_')[0]
+          languages = [language, standard_language, "#{standard_language}_ANY}"]
+          languages.each do |language_directory|
+            next unless ::Dir.exist?("#{path}/#{language_directory}")
+            languages.each do |language_file|
+              file_common_path = "#{path}/#{language_directory}/#{language_file}"
+              aff_file_path = "#{file_common_path}.aff"
+              dic_file_path = "#{file_common_path}.dic"
+              aff_file_exists = ::File.exist?(aff_file_path)
+              dic_file_exists = ::File.exist?(dic_file_path)
+              return aff_file_path, dic_file_path if aff_file_exists && dic_file_exists
             end
           end
-          raise "'#{@language}' language Hunspell dictionary not found installed in your system"
-        end
-
-        # Return an array of the hunspell dictionary paths
-        def dictionary_paths
-          output = `hunspell -D 2>&1`
-          hunspell_output_lines = output.split("\n")
-          i = 0
-          while i < hunspell_output_lines.length
-            break if hunspell_output_lines[i].start_with?('AVAILABLE DICTIONARIES')
-            i += 1
-          end
-          i += 1
-          dict_file_paths = Set.new(hunspell_output_lines[i..(hunspell_output_lines.length - 1)])
-          dict_file_paths.map { |path| path.split('/')[0..-2].join('/') }
-        end
-
-        # Check if a hunspell dictionary exists for the selected language
-        def dictionary_exists?(path)
-          aff_file_exists = ::File.exist?("#{path}/#{@language}.aff")
-          dic_file_exists = ::File.exist?("#{path}/#{@language}.dic")
-          aff_file_exists && dic_file_exists
-        end
-
-        def initialize_spellchecker
-          @spellchecker = spellchecker_from_local_file_prefix ||
-                          spellchecker_from_directory
-        end
-
-        def spellchecker_from_local_file_prefix
-          aff_file_exists = ::File.exist?("#{@path}.aff")
-          dic_file_exists = ::File.exist?("#{@path}.dic")
-          return false unless aff_file_exists && dic_file_exists
-          ::Hunspell.new("#{@path}.aff", "#{@path}.dic")
-        end
-
-        def spellchecker_from_directory
-          ::Hunspell.new("#{@path}/#{@language}.aff", "#{@path}/#{@language}.dic")
+          [nil, nil]
         end
       end
     end

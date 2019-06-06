@@ -8,15 +8,16 @@ module AlfonsoX
     module Dictionary
       # Rubymine dictionary loader
       class Rubymine
+        DEFAULT_PATH = '.idea/dictionary.xml'
         attr_reader :path
 
         def initialize(path = nil)
-          @path = path || '.idea/dictionaries'
+          @path = path || DEFAULT_PATH
           load_dictionaries
         end
 
         def self.from_config(yml_config)
-          new(yml_config['path'])
+          new(yml_config.fetch('path') { DEFAULT_PATH })
         end
 
         def word_present?(word)
