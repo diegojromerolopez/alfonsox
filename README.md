@@ -8,8 +8,6 @@
   <img width="250" src="https://github.com/diegojromerolopez/alfonsox/raw/master/resources/images/alfonsox.jpg">
 </p>
 
-## What's this?
-
 A simple spellchecking tool to make easy the spellchecking of code files.
 
 The aim is to use it with [overcommit](https://github.com/brigade/overcommit)
@@ -131,5 +129,6 @@ Everyone interacting in the Alfonso X project’s codebases, issue trackers, cha
 
 ## Why the name?
 
-[Alfonso X](https://en.wikipedia.org/wiki/Alfonso_X_of_Castile), called *The Wise*, was a king that reigned [Castile](https://en.wikipedia.org/wiki/Crown_of_Castile) (in Spain) during medieval times.
+[Alfonso X](https://en.wikipedia.org/wiki/Alfonso_X_of_Castile), called *The Wise*,
+was a king that reigned [Castile](https://en.wikipedia.org/wiki/Crown_of_Castile) (in Spain) during medieval times.
 He was a patron of the languages and pushed for the first orthography rules of Spanish.
