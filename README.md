@@ -1,9 +1,10 @@
 # Alfonso X
 
-[![Build Status](https://travis-ci.com/diegojromerolopez/alfonsox.svg?branch=master)](https://travis-ci.com/diegojromerolopez/alfonsox)
+[![Build Status](https://travis-ci.org/diegojromerolopez/alfonsox.svg?branch=master)](https://travis-ci.com/diegojromerolopez/alfonsox)
 [![Maintainability](https://api.codeclimate.com/v1/badges/053783a6bcd2404df5b1/maintainability)](https://codeclimate.com/github/diegojromerolopez/alfonsox/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/053783a6bcd2404df5b1/test_coverage)](https://codeclimate.com/github/diegojromerolopez/alfonsox/test_coverage)
 
+![King Alfonso X, the Wise](https://github.com/diegojromerolopez/alfonsox/tree/master/resources/images/alfonsox.jpg)
 
 ## What's this?
 
@@ -33,7 +34,7 @@ Or install it yourself as:
 Make sure you have [hunspell](http://hunspell.github.io/) installed
 in your system.
 
-No installation of dictionaries is required as this package alredy contains
+No installation of dictionaries is required as this package already contains
 LibreOffice dictionaries from
 [LibreOffice dictionaries repository](https://github.com/LibreOffice/dictionaries).
 
@@ -114,7 +115,13 @@ To sum up, we only talk about this software and respect each other.
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-The en_US dictionary included in the tests has MIT and BSD license and has been copied from [Titus Wormer's dictionary repository](https://github.com/wooorm/dictionaries/tree/master/dictionaries/en-US).
+All dictionaries included in [resources/dictionaries/hunspell](resources/dictionaries/hunspell) are part of the LibreOffice hunspell dictionaries. Each one has its own license.
+Visit [LibreOffice dictionaries repository](https://github.com/LibreOffice/dictionaries) for more information.
+
+The en_US dictionary included in the tests has MIT and BSD license and has been copied from
+[Titus Wormer's dictionary repository](https://github.com/wooorm/dictionaries/tree/master/dictionaries/en-US).
+
+[King Alfonso X image is Public Domain](https://commons.wikimedia.org/wiki/File:Retrato_de_Alfonso_X.jpg).
 
 ## Code of Conduct
 
