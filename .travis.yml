@@ -12,6 +12,3 @@ before_script:
 script: "bundle exec rake test"
 after_script:
 - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-
-  c6f6f48c884645f1b5cf6adaccd1c837b19989c5b88e430e5c217ca93cbe07dd
