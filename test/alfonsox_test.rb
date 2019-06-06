@@ -9,7 +9,7 @@ class AlfonsoXTest < Minitest::Test
   SAMPLE_TEXT_PATH = "#{__dir__}/resources/pride_1.txt"
 
   # Use the hunspell system dictionary to spellcheck a short fragment of the sample text with en_US localization
-  def test_hunspell_system_dictionary
+  def _test_hunspell_system_dictionary
     dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new('en_US')
     spellchecker = AlfonsoX::SpellChecker::Main.new(
       SAMPLE_TEXT_PATH,
@@ -24,7 +24,7 @@ class AlfonsoXTest < Minitest::Test
 
   # Use the hunspell dictionary stored in test/dictionaries/en_US to spellcheck
   # a short fragment of the sample text with en_US localization
-  def test_hunspell_local_dictionary_prefix
+  def _test_hunspell_local_dictionary_prefix
     dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
       'en_US', "#{__dir__}/dictionaries/en_US"
     )
@@ -39,7 +39,7 @@ class AlfonsoXTest < Minitest::Test
 
   # Use the hunspell dictionary stored in test/dictionaries/en_US to spellcheck
   # a short fragment of the sample text with en_US localization (alternative call method)
-  def test_hunspell_local_dictionary_directory
+  def _test_hunspell_local_dictionary_directory
     dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
       'en_US', "#{__dir__}/dictionaries"
     )
@@ -56,7 +56,7 @@ class AlfonsoXTest < Minitest::Test
   # a short fragment of the sample text.
   # Note there is no language here, because the dictionary is not based on language
   # but in the words added by the user.
-  def test_rubymine_dictionary_gb
+  def _test_rubymine_dictionary_gb
     dictionary = AlfonsoX::SpellChecker::Dictionary::Rubymine.new("#{__dir__}/dictionaries")
     spellchecker = AlfonsoX::SpellChecker::Main.new(
       SAMPLE_TEXT_PATH,
@@ -68,7 +68,7 @@ class AlfonsoXTest < Minitest::Test
   end
 
   # Test that several dictionaries can be loaded
-  def test_several_dictionaries
+  def _test_several_dictionaries
     hunspell_dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
       'en_US', "#{__dir__}/dictionaries"
     )
