@@ -17,7 +17,7 @@ class AlfonsoXTest < Minitest::Test
     )
     incorrect_words = spellchecker.check
     assert_equal 1, incorrect_words.length
-    assert_equal 4, incorrect_words[SAMPLE_TEXT_PATH].length
+    assert_equal 1, incorrect_words[SAMPLE_TEXT_PATH].length
   rescue RuntimeError => exception
     puts "#{exception}. Ignoring test."
   end
@@ -34,7 +34,7 @@ class AlfonsoXTest < Minitest::Test
     )
     incorrect_words = spellchecker.check
     assert_equal 1, incorrect_words.length
-    assert_equal 4, incorrect_words[SAMPLE_TEXT_PATH].length
+    assert_equal 1, incorrect_words[SAMPLE_TEXT_PATH].length
   end
 
   # Use the hunspell dictionary stored in test/dictionaries/en_US to spellcheck
@@ -49,7 +49,7 @@ class AlfonsoXTest < Minitest::Test
     )
     incorrect_words = spellchecker.check
     assert_equal 1, incorrect_words.length
-    assert_equal 4, incorrect_words[SAMPLE_TEXT_PATH].length
+    assert_equal 1, incorrect_words[SAMPLE_TEXT_PATH].length
   end
 
   # Use the rubymine dictionary stored in test/dictionaries/test.xml to spellcheck
@@ -64,7 +64,7 @@ class AlfonsoXTest < Minitest::Test
     )
     incorrect_words = spellchecker.check
     assert_equal 1, incorrect_words.length
-    assert_equal 69, incorrect_words[SAMPLE_TEXT_PATH].length
+    assert_equal 73, incorrect_words[SAMPLE_TEXT_PATH].length
   end
 
   # Test that several dictionaries can be loaded
