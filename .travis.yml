@@ -1,7 +1,6 @@
 before_install:
 - sudo apt-get update
-- sudo apt-get install -y hunspell
-- sudo apt-get install build-essential
+- sudo apt-get install -y hunspell libhunspell-dev build-essential
 env:
   global:
   - CC_TEST_REPORTER_ID=97a0d7ef341f593b1e8a6ad8ab8ceff2928ce1bd3edf3aa36e1df00e17b0952e
