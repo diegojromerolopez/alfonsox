@@ -9,6 +9,7 @@ module AlfonsoX
     # Main spellchecker class
     class Main
       attr_reader :paths, :dictionaries
+
       # Construct a spellchecker object from the paths it must check and a dictionary
       def initialize(paths, dictionaries)
         @paths = if paths.is_a?(String)
