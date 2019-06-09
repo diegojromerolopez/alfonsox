@@ -11,4 +11,10 @@ Dictionaries:
     language: 'en_US'
   MyRubymineDictionary:
     type: 'rubymine'
-    path: '.idea/dictionary.xml'
+  WordListDictionary:
+    type: 'word_list'
+    word_list:
+      - 'alfonso'
+      - 'babik'
+      - 'queryset'
+      - 'txt'

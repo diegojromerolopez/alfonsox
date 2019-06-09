@@ -78,6 +78,16 @@ Dictionaries:
     type: 'rubymine'
     # Optional, by default is '.idea/dictionary.xml'
     path: '.idea/dictionary.xml'
+  
+  # Include in this section a list of custom words or words
+  # that do not appear in other dictionaries
+  WordListDictionary:
+   type: 'word_list'
+   word_list:
+    - 'alfonso'
+    - 'babik'
+    - 'queryset'
+    - 'txt'
 ```
 
 e.g.

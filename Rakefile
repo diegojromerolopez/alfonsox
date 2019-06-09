@@ -23,7 +23,12 @@ task :spellcheck, [:config_path] => [] do |_t, args|
   args.with_defaults(config_path: 'alfonsox.yml')
   puts "Starting spellcheck using configuration #{args.config_path}"
   spellchecker = AlfonsoX::SpellChecker::Main.from_config(args.config_path)
-  spellchecker.check
+  spellchecker_errors_by_file = spellchecker.check
+  spellchecker_errors_by_file.each do |file_path, spellchecker_errors|
+    spellchecker_errors.each do |spellchecker_error_i|
+      puts "#{file_path}:#{spellchecker_error_i.line} #{spellchecker_error_i.word}"
+    end
+  end
 end
 
 task default: :test

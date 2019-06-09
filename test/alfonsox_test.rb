@@ -41,7 +41,7 @@ class AlfonsoXTest < Minitest::Test
   # a short fragment of the sample text.
   # Note there is no language here, because the dictionary is not based on language
   # but in the words added by the user.
-  def test_rubymine_dictionary_gb
+  def test_rubymine_dictionary
     test_file_path = "#{RESOURCE_PATH}/pride_1.txt"
     dictionary = AlfonsoX::SpellChecker::Dictionary::Rubymine.new("#{__dir__}/dictionaries")
     spellchecker = AlfonsoX::SpellChecker::Main.new(
@@ -50,7 +50,7 @@ class AlfonsoXTest < Minitest::Test
     )
     incorrect_words = spellchecker.check
     assert_equal 1, incorrect_words.length
-    assert_equal 69, incorrect_words[test_file_path].length
+    assert_equal 64, incorrect_words[test_file_path].length
   end
 
   # Test that several dictionaries can be loaded
@@ -81,11 +81,7 @@ class AlfonsoXTest < Minitest::Test
     )
     incorrect_words = spellchecker.check
     assert_equal 1, incorrect_words.length
-    assert_equal 35, incorrect_words[test_file_path].length
-    assert(
-      (Set.new(%w[babik queryset mixin param config sym klass const]) -
-      Set.new(incorrect_words[test_file_path].map(&:word))).length.zero?
-    )
+    assert_equal 15, incorrect_words[test_file_path].length
   end
 
   def test_config_load
@@ -96,7 +92,7 @@ class AlfonsoXTest < Minitest::Test
     assert_equal 'test/**.rb', spellchecker.paths[1]
 
     # Dictionaries assertions
-    assert_equal 3, spellchecker.dictionaries.length
+    assert_equal 5, spellchecker.dictionaries.length
 
     hunspell_dictionary1 = spellchecker.dictionaries[0]
     assert_equal 'en_US', hunspell_dictionary1.language
