@@ -40,6 +40,76 @@ LibreOffice dictionaries from
 
 ## Usage
 
+## From terminal
+
+### Define a configuration file
+
+Create a YML file with the following structure to set up configuration of the spellchecking process:
+
+```yaml
+
+# Paths the files to ve spellchecked are
+Paths:
+  - 'lib/**.rb'
+  - 'test/**.rb'
+  - '... other paths that will be spellcheck'
+
+# Dictionaries, choose one or all of these options
+#Note the name of these subsections can be customized,
+# i.e. instead of MyEnglishDictionaryFromLocalPath you can write
+# LocalDictionary, for example.
+Dictionaries:
+
+  # Use a hunspell dictionary included in your project
+  MyEnglishDictionaryFromLocalPath:
+    type: 'hunspell'
+    # Local hunspell dictionaries (.aff and .dic files)
+    path: 'my-local-path/dictionaries'
+    language: 'en_US'
+  
+  # Use a hunspell dictionary from this gem
+  MyEnglishDictionaryFromGem:
+      type: 'hunspell'
+      language: 'en_US'
+  
+  # If you use Rubymine, it is very useful to
+  # include your custom dictionary
+  MyRubymineDictionary:
+    type: 'rubymine'
+    # Optional, by default is '.idea/dictionary.xml'
+    path: '.idea/dictionary.xml'
+```
+
+e.g.
+
+```yaml
+Paths:
+  - 'app/*/**.rb'
+  - 'lib/**.rb'
+  - 'test/**.rb'
+Dictionaries:
+  EnglishDictionaryFromGem:
+      type: 'hunspell'
+      language: 'en_US'
+  RubymineDictionary:
+    type: 'rubymine'
+```
+
+### Call the rake task
+
+
+```bash
+bundle exec rake spellcheck[<path/where/alfonsox.yml/file/is>]
+```
+
+e.g.:
+
+```bash
+bundle exec rake spellcheck[alfonsox.yml]
+```
+
+## From code
+
 ### Load dictionaries
 
 ```ruby
@@ -77,26 +147,6 @@ incorrect_words = spellchecker.check
 # and the values are a list of incorrect words 
 ```
 
-## Configuration
-
-Create a YML file with the following structure to set up configuration of the spellchecking process:
-
-```yaml
-Paths:
-  - 'lib/**.rb'
-  - 'test/**.rb'
-Dictionaries:
-  MyEnglishDictionaryFromLocalPath:
-    type: 'hunspell'
-    path: 'my-local-path/dictionaries'
-    language: 'en_US'
-  MyEnglishDictionaryFromGem:
-      type: 'hunspell'
-      language: 'en_US'
-  MyRubymineDictionary:
-    type: 'rubymine'
-    path: '.idea/dictionary.xml'
-```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
