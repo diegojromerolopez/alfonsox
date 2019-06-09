@@ -22,6 +22,7 @@ module AlfonsoX
                         else
                           [dictionaries]
                         end
+        @dictionaries = @dictionaries.concat([AlfonsoX::SpellChecker::Dictionary::Default.new])
       end
 
       # Load from config
@@ -33,6 +34,7 @@ module AlfonsoX
         dictionary_class_from_type = lambda do |config_dictionary_type|
           return AlfonsoX::SpellChecker::Dictionary::Hunspell if config_dictionary_type == 'hunspell'
           return AlfonsoX::SpellChecker::Dictionary::Rubymine if config_dictionary_type == 'rubymine'
+          return AlfonsoX::SpellChecker::Dictionary::WordList if config_dictionary_type == 'word_list'
           raise "Dictionary type #{config_dictionary_type} is not recognized"
         end
 
@@ -51,7 +53,8 @@ module AlfonsoX
       def check
         incorrect_words_by_file = {}
         @paths.each do |path|
-          Dir.glob(path) do |rb_file|
+          rb_file_paths = Dir.glob(path).map { |expanded_path| ::File.realpath(expanded_path) }
+          rb_file_paths.each do |rb_file|
             file_incorrect_words = check_file(rb_file)
             next unless file_incorrect_words.length.positive?
             incorrect_words_by_file[rb_file] = file_incorrect_words

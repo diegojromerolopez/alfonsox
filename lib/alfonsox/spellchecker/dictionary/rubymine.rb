@@ -4,11 +4,14 @@ require 'nokogiri'
 
 # Alfonso X module
 module AlfonsoX
+  # Spell checker
   module SpellChecker
+    # Alfonso X dictionary
     module Dictionary
       # Rubymine dictionary loader
       class Rubymine
-        DEFAULT_PATH = '.idea/dictionary.xml'
+        # Default directory where the XML RubyMine dictionary file should be
+        DEFAULT_PATH = '.idea/dictionaries'
         attr_reader :path
 
         def initialize(path = nil)
@@ -21,7 +24,7 @@ module AlfonsoX
         end
 
         def word_present?(word)
-          @words.include?(word.upcase)
+          @words.include?(word.downcase)
         end
 
         def similar_words(_word)
@@ -35,8 +38,8 @@ module AlfonsoX
           Dir.glob("#{@path}/*.xml") do |xml_file_path|
             xml_file_contents = ::File.open(xml_file_path).read
             xml_doc = ::Nokogiri::XML(xml_file_contents)
-            xml_doc.xpath('//w').each do |word|
-              @words.add(word.content.upcase)
+            xml_doc.css('w').each do |word|
+              @words.add(word.content.downcase)
             end
           end
           @words
