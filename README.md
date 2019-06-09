@@ -118,6 +118,17 @@ e.g.:
 bundle exec rake spellcheck[alfonsox.yml]
 ```
 
+The rake task will output the spell checking errors, e.g.:
+
+```bash
+$ bundle exec rake spellcheck[./test/resources/config.yml]
+Starting spellcheck using configuration ./test/resources/config.yml
+/Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:8 jane
+/Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:8 austen
+/Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:70 neighbourhood
+```
+
+
 ## From code
 
 ### Load dictionaries
