@@ -107,21 +107,35 @@ Dictionaries:
 
 ### Call the rake task
 
+### Default configuration
+
+There is a [default configuration](/resources/configurations/default.yml)
+that will check US-English spelling and your RubyMine dictionary with your
+custom spellings.
 
 ```bash
-bundle exec rake spellcheck[<path/where/alfonsox.yml/file/is>]
+bundle exec rake alfonsox:spellcheck
+```
+
+### Custom configuration
+
+Copy the [default configuration](/resources/configurations/default.yml)
+to your project root directory and modify it
+
+```bash
+bundle exec rake alfonsox:spellcheck[<path/where/alfonsox.yml/file/is>]
 ```
 
 e.g.:
 
 ```bash
-bundle exec rake spellcheck[alfonsox.yml]
+bundle exec rake alfonsox:spellcheck[alfonsox.yml]
 ```
 
 The rake task will output the spell checking errors, e.g.:
 
 ```bash
-$ bundle exec rake spellcheck[./test/resources/config.yml]
+$ bundle exec rake alfonsox:spellcheck[./test/resources/config.yml]
 Starting spellcheck using configuration ./test/resources/config.yml
 /Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:8 jane
 /Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:8 austen
@@ -187,6 +201,8 @@ The en_US dictionary included in the tests has MIT and BSD license and has been 
 [Titus Wormer's dictionary repository](https://github.com/wooorm/dictionaries/tree/master/dictionaries/en-US).
 
 [King Alfonso X image is Public Domain](https://commons.wikimedia.org/wiki/File:Retrato_de_Alfonso_X.jpg).
+
+RubyMine is a trademark of JetBrains. This project is no way endorsed, supported by or related with JetBrains.
 
 ## Code of Conduct
 

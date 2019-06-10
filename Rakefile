@@ -18,15 +18,21 @@ task :coverage do
   Rake::Task['test'].execute
 end
 
-desc 'Spell checks a project'
-task :spellcheck, [:config_path] => [] do |_t, args|
-  args.with_defaults(config_path: 'alfonsox.yml')
-  puts "Starting spellcheck using configuration #{args.config_path}"
-  spellchecker = AlfonsoX::SpellChecker::Main.from_config(args.config_path)
-  spellchecker_errors_by_file = spellchecker.check
-  spellchecker_errors_by_file.each do |file_path, spellchecker_errors|
-    spellchecker_errors.each do |spellchecker_error_i|
-      puts "#{file_path}:#{spellchecker_error_i.line} #{spellchecker_error_i.word}"
+namespace :alfonsox do
+  desc 'Spell checks a project'
+  task :spellcheck, [:config_path] => [] do |_t, args|
+    if args.config_path
+      puts "Starting spellcheck using configuration #{args.config_path}"
+    else
+      puts 'No custom configuration, starting spellcheck using default configuration'
+    end
+    config_path = args.config_path || ALFONSOX_DEFAULT_CONFIGURATION_PATH
+    spellchecker = AlfonsoX::SpellChecker::Main.from_config(config_path)
+    spellchecker_errors_by_file = spellchecker.check
+    spellchecker_errors_by_file.each do |file_path, spellchecker_errors|
+      spellchecker_errors.each do |spellchecker_error_i|
+        puts "#{file_path}:#{spellchecker_error_i.line} #{spellchecker_error_i.word}"
+      end
     end
   end
 end

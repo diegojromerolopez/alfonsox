@@ -1,0 +1,12 @@
+Paths:
+- '*/**.rb'
+Dictionaries:
+  EnglishDictionaryFromGem:
+    type: 'hunspell'
+    language: 'en_US'
+  RubymineDictionary:
+    type: 'rubymine'
+  WordListDictionary:
+    type: 'word_list'
+    word_list:
+    - 'alfonso'
