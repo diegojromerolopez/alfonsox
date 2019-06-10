@@ -20,11 +20,15 @@ gem 'alfonsox'
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install alfonsox
+```bash
+$ gem install alfonsox
+```
 
 ## Setup
 
@@ -37,9 +41,9 @@ LibreOffice dictionaries from
 
 ## Usage
 
-## From terminal
+### Terminal
 
-### Define a configuration file
+#### Define a configuration file
 
 Create a YML file with the following structure to set up configuration of the spellchecking process:
 
@@ -102,9 +106,9 @@ Dictionaries:
     type: 'rubymine'
 ```
 
-### Call the rake task
+#### Rake task
 
-### Default configuration
+##### Default configuration
 
 There is a [default configuration](/resources/configurations/default.yml)
 that will check US-English spelling and your RubyMine dictionary with your
@@ -114,7 +118,7 @@ custom spellings.
 bundle exec rake alfonsox:spellcheck
 ```
 
-### Custom configuration
+##### Custom configuration
 
 Copy the [default configuration](/resources/configurations/default.yml)
 to your project root directory and modify it
@@ -126,7 +130,7 @@ bundle exec rake alfonsox:spellcheck[<path/where/alfonsox.yml/file/is>]
 e.g.:
 
 ```bash
-bundle exec rake alfonsox:spellcheck[alfonsox.yml]
+bundle exec rake alfonsox:spellcheck[.alfonsox.yml]
 ```
 
 The rake task will output the spell checking errors, e.g.:
@@ -139,10 +143,77 @@ Starting spellcheck using configuration ./test/resources/config.yml
 /Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:70 neighbourhood
 ```
 
+### Overcommit integration
 
-## From code
+[Overcommit](https://github.com/sds/overcommit)
+is a project whose aim is to provide developers
+with tools to check code quality easily.
 
-### Load dictionaries
+[Define a new pre-commit hook in your repository](https://github.com/sds/overcommit#repo-specific-hooks):
+
+Add a file **.git-hooks/pre_commit/alfonsox.rb** with the following contents:
+
+```ruby
+# frozen_string_literal: true
+
+module Overcommit::Hook::PreCommit
+  #
+  # Spell check of the code.
+  #
+  class AlfonsoX < Base
+    def run
+      # Create default file config if it does not exist
+
+      # Run rake spellcheck task
+      args = flags + applicable_files
+      result = execute('bundle exec rake alfonsox:spellcheck[.alfonsox.yml]', args: args)
+      spellchecking_errors = result.split('\n')
+
+      # Check the if there are spelling errors
+      return :pass if spellchecking_errors.length.zero?
+
+      error_messages(spellchecking_errors)
+    end
+
+    private
+
+    # Create the error messages
+    def error_messages(spellchecking_errors)
+      messages = []
+      spellchecking_errors.each do |spellchecking_error_i|
+        error_location, word = spellchecking_error_i.split(' ')
+        error_file_path, line = error_location.split(':')
+        messages << Overcommit::Hook::Message.new(
+          :error, error_file_path, line, "#{error_location}: #{word}"
+        )
+      end
+      messages
+    end
+  end
+end
+```
+
+Make sure you have a configuration in the root directory of your project with
+the name **.alfonsox.yml**:
+
+```yml
+Paths:
+- '*/**.rb'
+Dictionaries:
+  EnglishDictionaryFromGem:
+    type: 'hunspell'
+    language: 'en_US'
+  RubymineDictionary:
+    type: 'rubymine'
+  WordListDictionary:
+    type: 'word_list'
+    word_list:
+    - 'alfonso'
+```
+
+### From code
+
+#### Load dictionaries
 
 ```ruby
 # Load Hunspell dictionary from your system
@@ -158,7 +229,7 @@ dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new(
 )
 ```
 
-### Spellcheck some files
+#### Spellcheck some files
 
 ```ruby
 dictionaries = [
