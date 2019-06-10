@@ -7,7 +7,7 @@ require 'alfonsox/version'
 Gem::Specification.new do |spec|
   spec.name          = 'alfonsox'
   spec.version       = AlfonsoX::VERSION
-  spec.authors       = ['Diego J.']
+  spec.authors       = ['Diego J. Romero López']
   spec.email         = ['diegojromerolopez@gmail.com']
 
   spec.summary       = 'Spell checker for code'
