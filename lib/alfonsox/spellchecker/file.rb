@@ -28,11 +28,6 @@ module AlfonsoX
         @incorrect_words
       end
 
-      # Are there any incorrect words?
-      def incorrect_words?
-        @incorrect_words.length.positive?
-      end
-
       # Tokenize a line, i.e. split words of a line.
       # @param [String] word_line A line of a text.
       # @return [Array<String>] Words of the word_line.

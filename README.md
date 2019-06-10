@@ -10,9 +10,6 @@
 
 A simple spellchecking tool to make easy the spellchecking of code files.
 
-The aim is to use it with [overcommit](https://github.com/brigade/overcommit)
-and automatically spellcheck code files with a pre-commit git hook.
-
 ## Installation
 
 Add this line to your application's Gemfile:

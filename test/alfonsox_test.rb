@@ -71,6 +71,7 @@ class AlfonsoXTest < Minitest::Test
     assert_equal 5, incorrect_words[test_file_path][0].line
   end
 
+  # Test spell checking of code file
   def test_code_file
     test_file_path = "#{RESOURCE_PATH}/babik.rb"
     hunspell_dictionary = AlfonsoX::SpellChecker::Dictionary::Hunspell.new('en_US')
@@ -84,6 +85,7 @@ class AlfonsoXTest < Minitest::Test
     assert_equal 15, incorrect_words[test_file_path].length
   end
 
+  # Test configuration load
   def test_config_load
     spellchecker = AlfonsoX::SpellChecker::Main.from_config("#{__dir__}/resources/config.yml")
     # Check the spellchecked paths
@@ -104,5 +106,13 @@ class AlfonsoXTest < Minitest::Test
 
     rubymine_dictionary = spellchecker.dictionaries[2]
     assert_equal AlfonsoX::SpellChecker::Dictionary::Rubymine::DEFAULT_PATH, rubymine_dictionary.path
+  end
+
+  # Test a configuration with bad type of dictionary
+  def test_bad_config_load
+    exception = assert_raises(Exception) do
+      AlfonsoX::SpellChecker::Main.from_config("#{__dir__}/resources/bad_config.yml")
+    end
+    assert_equal 'Dictionary type this-dictionary-type-does-not-exist is not recognized', exception.message
   end
 end

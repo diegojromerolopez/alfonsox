@@ -1,0 +1,20 @@
+Paths:
+  - 'lib/**.rb'
+  - 'test/**.rb'
+Dictionaries:
+  MyEnglishDictionaryFromLocalPath:
+    type: 'this-dictionary-type-does-not-exist'
+    path: 'test/dictionaries'
+    language: 'en_US'
+  MyEnglishDictionaryFromGem:
+    type: 'hunspell'
+    language: 'en_US'
+  MyRubymineDictionary:
+    type: 'rubymine'
+  WordListDictionary:
+    type: 'word_list'
+    word_list:
+      - 'alfonso'
+      - 'babik'
+      - 'queryset'
+      - 'txt'
