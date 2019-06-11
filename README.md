@@ -108,6 +108,18 @@ Dictionaries:
 
 #### Rake task
 
+To use the rake task, you have to include the two following lines
+in your project's Rakefile:
+
+```ruby
+alfonsox_gem = Gem::Specification.find_by_name('alfonsox')
+load("#{alfonsox_gem.gem_dir}/Rakefile")
+```
+
+That two lines load all Alfonso X tasks' in your Rakefile.
+
+Our aim is to use **alfonsox:spellcheck** task.
+
 ##### Default configuration
 
 There is a [default configuration](/resources/configurations/default.yml)
@@ -275,6 +287,15 @@ RubyMine is a trademark of JetBrains. This project is no way endorsed, supported
 ## Code of Conduct
 
 Everyone interacting in the Alfonso X project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/diegojromerolopez/alfonsox/blob/master/CODE_OF_CONDUCT.md).
+
+## Contributions
+
+I accept contribution and feature requests via PR (GitHub pull requests).
+
+Create an issue or send me an email before making a PR
+if you are unsure about if your PR is going to be accepted.
+
+Any constructive criticism is welcomed.
 
 ## Why the name?
 
