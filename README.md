@@ -106,7 +106,7 @@ Dictionaries:
     type: 'rubymine'
 ```
 
-#### Comnand line tool
+#### Command line tool
 
 Just call **bundle exec alfonsox** and it should work fine, informing of any orthographic error in your code files.
 
