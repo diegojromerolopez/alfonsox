@@ -1,6 +1,8 @@
 before_install:
 - sudo apt-get update
 - sudo apt-get install -y hunspell libhunspell-dev build-essential
+- gem update --system
+- bundle install
 env:
   global:
   - CC_TEST_REPORTER_ID=c6f6f48c884645f1b5cf6adaccd1c837b19989c5b88e430e5c217ca93cbe07dd
