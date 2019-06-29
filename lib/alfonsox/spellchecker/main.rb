@@ -50,7 +50,7 @@ module AlfonsoX
 
       # Spellcheck all the paths.
       # @return [Array<AlfonsoX::SpellChecker::Word>] array of the incorrect words by file.
-      def check
+      def check_all
         incorrect_words_by_file = {}
         @paths.each do |path|
           rb_file_paths = Dir.glob(path).map { |expanded_path| ::File.realpath(expanded_path) }
@@ -59,6 +59,20 @@ module AlfonsoX
             next unless file_incorrect_words.length.positive?
             incorrect_words_by_file[rb_file] = file_incorrect_words
           end
+        end
+        incorrect_words_by_file
+      end
+
+      # Spellcheck some files.
+      # @param [Array<String>] applicable_files List of full file paths that will be spell-checked. Optional.
+      # @return [Array<AlfonsoX::SpellChecker::Word>] array of the incorrect words by file.
+      def check(applicable_files = nil)
+        return check_all unless applicable_files
+        incorrect_words_by_file = {}
+        applicable_files.each do |applicable_file_i|
+          file_incorrect_words = check_file(applicable_file_i)
+          next unless file_incorrect_words.length.positive?
+          incorrect_words_by_file[applicable_file_i] = file_incorrect_words
         end
         incorrect_words_by_file
       end

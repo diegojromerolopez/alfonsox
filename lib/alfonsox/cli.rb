@@ -20,7 +20,12 @@ module AlfonsoX
     # Run spell-check on files specified by config file
     def run
       spellchecker = AlfonsoX::SpellChecker::Main.from_config(@config_file_path)
-      spellchecker_errors_by_file = spellchecker.check
+      spellchecker_errors_by_file = if ARGV&.length&.positive?
+                                      spellchecker.check(ARGV)
+                                    else
+                                      spellchecker.check_all
+                                    end
+
       exit_status = SUCCESS_EXIT_STATUS
       spellchecker_errors_by_file.each do |file_path, spellchecker_errors|
         spellchecker_errors.each do |spellchecker_error_i|

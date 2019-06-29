@@ -110,6 +110,9 @@ Dictionaries:
 
 Just call **bundle exec alfonsox** and it should work fine, informing of any orthographic error in your code files.
 
+The arguments must be the full paths of the file to be checked. If no arguments are passed to this tool, all files
+that fulfill the paths defined in the configuration file will be checked.
+
 ##### Output
 
 ###### Successful Output
@@ -117,7 +120,7 @@ Just call **bundle exec alfonsox** and it should work fine, informing of any ort
 Note the output is written in standard output (STDOUT).
 
 ```bash
-$ bundle exec alfonsox
+$ bundle exec alfonsox file1 file2 #...
 ✔ Code is spell-checked correctly
 ```
 
@@ -133,7 +136,7 @@ $ echo $?
 Note the output is written in error standard output (STDERR).
 
 ```bash
-$ bundle exec alfonsox
+$ bundle exec alfonsox file1 file2 #...
 /Users/diegoj/proyectos/blobik/app/models/post.rb:2 incorrektword
 ✗ Errors in code spellchecking
 ```
