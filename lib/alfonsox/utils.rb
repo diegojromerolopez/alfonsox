@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'English'
+
 # A Alfonso X module
 module AlfonsoX
   # Utils for Alfonso X
@@ -17,8 +19,8 @@ module AlfonsoX
       # @return [String] GIT root file path
       def repo_root
         result = `git rev-parse --show-toplevel`
-        raise 'Not in git repository' unless result.success?
-        result.stdout.chomp("\n")
+        raise 'Not in git repository' unless $CHILD_STATUS.success?
+        result.chomp("\n")
       end
     end
   end

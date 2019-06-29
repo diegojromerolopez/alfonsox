@@ -106,54 +106,9 @@ Dictionaries:
     type: 'rubymine'
 ```
 
-#### Rake task
+#### Comnand line tool
 
-To use the rake task, you have to include the two following lines
-in your project's Rakefile:
-
-```ruby
-alfonsox_gem = Gem::Specification.find_by_name('alfonsox')
-load("#{alfonsox_gem.gem_dir}/Rakefile")
-```
-
-That two lines load all Alfonso X tasks' in your Rakefile.
-
-Our aim is to use **alfonsox:spellcheck** task.
-
-##### Default configuration
-
-There is a [default configuration](/resources/configurations/default.yml)
-that will check US-English spelling and your RubyMine dictionary with your
-custom spellings.
-
-```bash
-bundle exec rake alfonsox:spellcheck
-```
-
-##### Custom configuration
-
-Copy the [default configuration](/resources/configurations/default.yml)
-to your project root directory and modify it
-
-```bash
-bundle exec rake alfonsox:spellcheck[<path/where/alfonsox.yml/file/is>]
-```
-
-e.g.:
-
-```bash
-bundle exec rake alfonsox:spellcheck[.alfonsox.yml]
-```
-
-The rake task will output the spell checking errors, e.g.:
-
-```bash
-$ bundle exec rake alfonsox:spellcheck[./test/resources/config.yml]
-Starting spellcheck using configuration ./test/resources/config.yml
-/Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:8 jane
-/Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:8 austen
-/Users/diegoj/proyectos/alfonsox/test/alfonsox_test.rb:70 neighbourhood
-```
+Just call **bundle exec alfonsox** and it should work fine, informing of any orthographic error in your code files.
 
 ### Overcommit integration
 
@@ -178,7 +133,7 @@ module Overcommit::Hook::PreCommit
 
       # Run rake spellcheck task
       args = flags + applicable_files
-      result = execute('bundle exec rake alfonsox:spellcheck[.alfonsox.yml]', args: args)
+      result = execute('bundle exec alfonsox', args: args)
       spellchecking_errors = result.split('\n')
 
       # Check the if there are spelling errors
