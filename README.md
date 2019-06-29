@@ -135,7 +135,7 @@ Note the output is written in error standard output (STDERR).
 ```bash
 $ bundle exec alfonsox
 /Users/diegoj/proyectos/blobik/app/models/post.rb:2 incorrektword
-✗ Errors in in code spellchecking
+✗ Errors in code spellchecking
 ```
 
 Note the exit code is 1

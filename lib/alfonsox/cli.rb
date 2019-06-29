@@ -64,7 +64,7 @@ module AlfonsoX
 
     # Informs that something went wrong
     def print_error_status
-      STDERR.puts '✗ Errors in in code spellchecking'
+      STDERR.puts '✗ Errors in code spellchecking'
     end
   end
 end
