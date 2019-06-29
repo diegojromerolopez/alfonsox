@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    alfonsox (0.2)
+    alfonsox (0.2.2)
       hunspell (~> 1.1, >= 1.1.0)
       nokogiri (~> 1.8, >= 1.8.5)
 
@@ -91,4 +91,4 @@ DEPENDENCIES
   simplecov-console
 
 BUNDLED WITH
-   1.16.2
+   1.17.3
