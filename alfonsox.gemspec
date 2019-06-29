@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['diegojromerolopez@gmail.com']
 
   spec.summary       = 'Spell checker for code'
-  spec.description   = 'Spell checker for code'
+  spec.description   = 'Tool to detect orthography errors your code files'
   spec.homepage      = AlfonsoX::REPOSITORY_URL
   spec.license       = 'MIT'
 
@@ -24,16 +24,15 @@ Gem::Specification.new do |spec|
       f.match(%r{^(test|spec|features)/})
     end
   end
-  spec.bindir        = 'exe'
   spec.executables   = ['alfonsox']
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.4'
 
-  spec.add_dependency 'hunspell'
+  spec.add_dependency 'hunspell', '~> 1.1', '>= 1.1.0'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'simplecov', '~> 0.16'
 end
