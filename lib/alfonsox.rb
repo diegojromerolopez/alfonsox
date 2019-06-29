@@ -2,6 +2,7 @@
 
 require 'alfonsox/version'
 require 'alfonsox/constants'
+require 'alfonsox/utils'
 require 'alfonsox/spellchecker/dictionaries'
 require 'alfonsox/spellchecker/main'
 
