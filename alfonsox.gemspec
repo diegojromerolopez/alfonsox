@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.executables   = ['alfonsox']
   spec.require_paths = ['lib']
 
-  s.required_ruby_version = '>= 2.4'
+  spec.required_ruby_version = '>= 2.4'
 
   spec.add_dependency 'hunspell'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
