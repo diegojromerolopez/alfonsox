@@ -57,12 +57,17 @@ module AlfonsoX
 
         # Other common but erroneous words in the Ruby-development world
         OTHERS = %w[
+          asc
           autorun
           autotest
+          bigint
           config
           const
           cov
+          datetime
+          desc
           dir
+          env
           formatter
           klass
           rb
