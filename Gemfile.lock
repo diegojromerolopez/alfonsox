@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    alfonsox (0.2.2)
+    alfonsox (0.2.3)
       hunspell (~> 1.1, >= 1.1.0)
       nokogiri (~> 1.8, >= 1.8.5)
 
