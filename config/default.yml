@@ -1,0 +1,10 @@
+Paths:
+- 'app/*/**.rb'
+- 'lib/**.rb'
+- 'test/**.rb'
+Dictionaries:
+  EnglishDictionaryFromGem:
+    type: 'hunspell'
+    language: 'en_US'
+  RubymineDictionary:
+    type: 'rubymine'

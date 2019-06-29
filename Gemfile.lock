@@ -3,7 +3,7 @@ PATH
   specs:
     alfonsox (0.1.1)
       hunspell
-      nokogiri (>= 1.8.5)
+      nokogiri (~> 1.8, >= 1.8.5)
 
 GEM
   remote: https://rubygems.org/

@@ -9,7 +9,7 @@ module AlfonsoX
       # Hunspell dictionary loader
       class Hunspell
         # Default hunspell dictionary path
-        DEFAULT_PATH = "#{ALFONSOX_DICTIONARIES_PATH}/hunspell"
+        DEFAULT_PATH = "#{AlfonsoX::DICTIONARIES_PATH}/hunspell"
         # All atributtes are readable
         attr_reader :language, :path
 
@@ -43,7 +43,7 @@ module AlfonsoX
       # Finds the dictionary in this Gem
       class DictionaryFinder
         attr_reader :aff_file_path, :dic_file_path
-        PATH = "#{ALFONSOX_DICTIONARIES_PATH}/hunspell"
+        PATH = "#{AlfonsoX::DICTIONARIES_PATH}/hunspell"
 
         def initialize(language, path = nil)
           @language = language
@@ -53,7 +53,7 @@ module AlfonsoX
         end
 
         def find
-          paths = [@path, "#{ALFONSOX_DICTIONARIES_PATH}/hunspell"].compact
+          paths = [@path, "#{AlfonsoX::DICTIONARIES_PATH}/hunspell"].compact
           paths.each do |path|
             @aff_file_path, @dic_file_path = DictionaryFinder.find_from_language(@language, path)
             return true if @aff_file_path && @dic_file_path
