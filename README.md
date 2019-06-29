@@ -110,6 +110,41 @@ Dictionaries:
 
 Just call **bundle exec alfonsox** and it should work fine, informing of any orthographic error in your code files.
 
+##### Output
+
+###### Successful Output
+
+Note the output is written in standard output (STDOUT).
+
+```bash
+$ bundle exec alfonsox
+✔ Code is spell-checked correctly
+```
+
+Note the exit code is 0
+
+```bash
+$ echo $?
+0
+```
+
+###### Non-successful Output
+
+Note the output is written in error standard output (STDERR).
+
+```bash
+$ bundle exec alfonsox
+/Users/diegoj/proyectos/blobik/app/models/post.rb:2 incorrektword
+✗ Errors in in code spellchecking
+```
+
+Note the exit code is 1
+
+```bash
+$ echo $?
+1
+```
+
 ### Overcommit integration
 
 [Overcommit](https://github.com/sds/overcommit)
