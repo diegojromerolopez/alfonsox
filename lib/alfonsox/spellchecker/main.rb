@@ -35,6 +35,7 @@ module AlfonsoX
           return AlfonsoX::SpellChecker::Dictionary::Hunspell if config_dictionary_type == 'hunspell'
           return AlfonsoX::SpellChecker::Dictionary::Rubymine if config_dictionary_type == 'rubymine'
           return AlfonsoX::SpellChecker::Dictionary::WordList if config_dictionary_type == 'word_list'
+          return AlfonsoX::SpellChecker::Dictionary::WordListFile if config_dictionary_type == 'word_list_file'
           raise "Dictionary type #{config_dictionary_type} is not recognized"
         end
 

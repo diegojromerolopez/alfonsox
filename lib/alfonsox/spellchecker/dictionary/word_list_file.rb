@@ -6,19 +6,21 @@ require 'nokogiri'
 module AlfonsoX
   module SpellChecker
     module Dictionary
-      # Custom dictionary loader composed by a word list
-      class WordList
+      # Custom dictionary loader composed by a word list from a file
+      class WordListFile
         attr_reader :words
 
-        # Initialize a AlfonsoX::SpellChecker::Dictionary::WordList
-        # @param [Array<String>] word_list Words that are included in this dictionary
-        def initialize(word_list)
+        # Initialize a AlfonsoX::SpellChecker::Dictionary::WordListFile from a file path.
+        # Note the words must be in different lines.
+        # @param [String] word_list_file_path Word list file path.
+        def initialize(word_list_file_path)
+          word_list = ::File.readlines(word_list_file_path).map(&:chomp)
           @words = word_list.map(&:downcase)
         end
 
         # Load from Yml
         def self.from_config(yml_config)
-          new(yml_config.fetch('word_list') { [] })
+          new(yml_config['path'])
         end
 
         # Inform if a word is present in this dictionary.

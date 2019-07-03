@@ -10,7 +10,7 @@ module AlfonsoX
       class Hunspell
         # Default hunspell dictionary path
         DEFAULT_PATH = "#{AlfonsoX::DICTIONARIES_PATH}/hunspell"
-        # All atributtes are readable
+        # All attributes are readable
         attr_reader :language, :path
 
         # Construct a hunspell dictionary object for this package
@@ -25,14 +25,12 @@ module AlfonsoX
           new(yml_config['language'], yml_config.fetch('path') { DEFAULT_PATH })
         end
 
+        # Inform if a word is present in this dictionary.
         def word_present?(word)
           @spellchecker.spellcheck(word)
         end
 
-        def similar_words(word)
-          @spellchecker.suggest(word)
-        end
-
+        # Initialize spellchecker attribute
         def initialize_spellchecker(path)
           dictionary_finder = DictionaryFinder.new(@language, path)
           raise "'#{@language}' language Hunspell dictionary not found" unless dictionary_finder.find

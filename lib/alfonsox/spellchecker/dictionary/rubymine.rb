@@ -14,21 +14,21 @@ module AlfonsoX
         DEFAULT_PATH = '.idea/dictionaries'
         attr_reader :path
 
+        # Initialize Rubymine dictionary
+        # If path is not present, it will be loaded from #DEFAULT_PATH.
         def initialize(path = nil)
           @path = path || DEFAULT_PATH
           load_dictionaries
         end
 
+        # Load configuration from YML
         def self.from_config(yml_config)
           new(yml_config.fetch('path') { DEFAULT_PATH })
         end
 
+        # Inform if a word is present in this dictionary.
         def word_present?(word)
           @words.include?(word.downcase)
-        end
-
-        def similar_words(_word)
-          []
         end
 
         private

@@ -4,13 +4,16 @@ Paths:
 Dictionaries:
   MyEnglishDictionaryFromLocalPath:
     type: 'hunspell'
-    path: 'test/dictionaries'
+    path: 'test/alfonsox/spellchecker/resources/dictionaries'
     language: 'en_US'
   MyEnglishDictionaryFromGem:
     type: 'hunspell'
     language: 'en_US'
   MyRubymineDictionary:
     type: 'rubymine'
+  WordListFileDictionary:
+    type: 'word_list_file'
+    path: 'test/alfonsox/spellchecker/resources/dictionaries/word_list.txt'
   WordListDictionary:
     type: 'word_list'
     word_list:

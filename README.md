@@ -79,7 +79,14 @@ Dictionaries:
     type: 'rubymine'
     # Optional, by default is '.idea/dictionary.xml'
     path: '.idea/dictionary.xml'
-  
+
+  # Include in this section a file path with a list of custom words or words
+  # Note the file must contain a word per line
+  # that do not appear in other dictionaries
+  WordListFileictionary:
+   type: 'word_list'
+   path: 'your/word/list/file/path'
+ 
   # Include in this section a list of custom words or words
   # that do not appear in other dictionaries
   WordListDictionary:
