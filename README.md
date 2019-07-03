@@ -150,71 +150,29 @@ $ echo $?
 
 ### Overcommit integration
 
-[Overcommit](https://github.com/sds/overcommit)
-is a project whose aim is to provide developers
+Easiest way of use this project is to use [Overcommit](https://github.com/sds/overcommit).
+For those of you that don't know it, it is a project whose aim is to provide developers
 with tools to check code quality easily.
 
-[Define a new pre-commit hook in your repository](https://github.com/sds/overcommit#repo-specific-hooks):
-
-Add a file **.git-hooks/pre_commit/alfonsox.rb** with the following contents:
-
-```ruby
-# frozen_string_literal: true
-
-module Overcommit::Hook::PreCommit
-  #
-  # Spell check of the code.
-  #
-  class AlfonsoX < Base
-    def run
-      # Create default file config if it does not exist
-
-      # Run rake spellcheck task
-      args = flags + applicable_files
-      result = execute('bundle exec alfonsox', args: args)
-      spellchecking_errors = result.split('\n')
-
-      # Check the if there are spelling errors
-      return :pass if spellchecking_errors.length.zero?
-
-      error_messages(spellchecking_errors)
-    end
-
-    private
-
-    # Create the error messages
-    def error_messages(spellchecking_errors)
-      messages = []
-      spellchecking_errors.each do |spellchecking_error_i|
-        error_location, word = spellchecking_error_i.split(' ')
-        error_file_path, line = error_location.split(':')
-        messages << Overcommit::Hook::Message.new(
-          :error, error_file_path, line, "#{error_location}: #{word}"
-        )
-      end
-      messages
-    end
-  end
-end
-```
-
-Make sure you have a configuration in the root directory of your project with
-the name **.alfonsox.yml**:
+It has a
+[CodeSpellCheck](https://github.com/sds/overcommit/blob/master/lib/overcommit/hook/pre_commit/code_spell_check.rb)
+pre-commit hook that accepts an Alfonso X configuration, by default is:
 
 ```yml
 Paths:
-- '*/**.rb'
+- 'app/*/**.rb'
+- 'lib/**.rb'
+- 'test/**.rb'
 Dictionaries:
   EnglishDictionaryFromGem:
     type: 'hunspell'
     language: 'en_US'
   RubymineDictionary:
     type: 'rubymine'
-  WordListDictionary:
-    type: 'word_list'
-    word_list:
-    - 'alfonso'
 ```
+
+If you want to overwrite it, create an **.alfonsox.yml** file in your
+home directory and write your custom spell-check configuration there.
 
 ### From code
 
@@ -288,7 +246,7 @@ I accept contribution and feature requests via PR (GitHub pull requests).
 Create an issue or send me an email before making a PR
 if you are unsure about if your PR is going to be accepted.
 
-Any constructive criticism is welcomed.
+Any suggestion, issue or constructive criticism is also welcomed.
 
 ## Why the name?
 
