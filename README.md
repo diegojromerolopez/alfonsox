@@ -1,7 +1,7 @@
 # Alfonso X
 
 [![Gem Version](https://badge.fury.io/rb/alfonsox.svg)](https://badge.fury.io/rb/alfonsox)
-[![Build Status](https://travis-ci.org/diegojromerolopez/alfonsox.svg?branch=master)](https://travis-ci.com/diegojromerolopez/alfonsox)
+[![Build Status](https://travis-ci.org/diegojromerolopez/alfonsox.svg?branch=master)](https://travis-ci.org/diegojromerolopez/alfonsox)
 [![Maintainability](https://api.codeclimate.com/v1/badges/053783a6bcd2404df5b1/maintainability)](https://codeclimate.com/github/diegojromerolopez/alfonsox/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/053783a6bcd2404df5b1/test_coverage)](https://codeclimate.com/github/diegojromerolopez/alfonsox/test_coverage)
 
