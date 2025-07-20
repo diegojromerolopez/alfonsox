@@ -9,5 +9,5 @@ group :development, :test do
   gem 'reek'
   gem 'rubocop'
   gem 'simplecov'
-  gem 'simplecov-console'
+  gem 'simplecov-console', '>= 0.6.0'
 end
